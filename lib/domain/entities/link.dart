@@ -1,11 +1,16 @@
-class Link {
-  final String alias;
-  final String link;
-  final String shortenedLink;
+import 'package:equatable/equatable.dart';
 
-  Link({
+class Link extends Equatable {
+  final String alias;
+  final String self;
+  final String short;
+
+  const Link({
     required this.alias,
-    required this.link,
-    required this.shortenedLink,
+    required this.self,
+    required this.short,
   });
+
+  @override
+  List<Object?> get props => [alias, self, short];
 }
