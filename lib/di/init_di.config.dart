@@ -8,9 +8,11 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../app/screens/home/state_management/home_cubit.dart' as _i3;
+import '../app/screens/home/state_management/home_cubit.dart' as _i6;
+import '../data/repositories/link/link_repository.dart' as _i3;
+import '../data/repositories/link/link_repository_impl.dart' as _i4;
 import '../domain/usecases/shorten_link_use_case.dart'
-    as _i4; // ignore_for_file: unnecessary_lambdas
+    as _i5; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -24,7 +26,9 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.HomeCubit>(() => _i3.HomeCubit(get<_i4.ShortenLinkUseCase>()));
-  gh.factory<_i4.ShortenLinkUseCaseImpl>(() => _i4.ShortenLinkUseCaseImpl());
+  gh.factory<_i3.LinkRepository>(() => _i4.LinkRepositoryImpl());
+  gh.factory<_i5.ShortenLinkUseCase>(
+      () => _i5.ShortenLinkUseCaseImpl(get<_i3.LinkRepository>()));
+  gh.factory<_i6.HomeCubit>(() => _i6.HomeCubit(get<_i5.ShortenLinkUseCase>()));
   return get;
 }
