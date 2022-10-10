@@ -3,14 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nubank_exercise/app/input_validator_error.dart';
 import 'package:nubank_exercise/app/screens/home/state_management/home_cubit.dart';
 
-class HomeInputBar extends StatefulWidget {
-  const HomeInputBar({Key? key}) : super(key: key);
+class LinkInputBar extends StatefulWidget {
+  const LinkInputBar({Key? key, required this.isLoading}) : super(key: key);
+
+  final bool isLoading;
 
   @override
-  State<HomeInputBar> createState() => _HomeInputBarState();
+  State<LinkInputBar> createState() => _LinkInputBarState();
 }
 
-class _HomeInputBarState extends State<HomeInputBar> {
+class _LinkInputBarState extends State<LinkInputBar> {
   final TextEditingController _textEditingController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -32,10 +34,20 @@ class _HomeInputBarState extends State<HomeInputBar> {
                   validator: InputValidatorError.getLinkValidator,
                 ),
               ),
-              IconButton(
-                onPressed: manageOnPressed,
-                icon: const Icon(Icons.send),
-              ),
+              widget.isLoading
+                  ? Container(
+                      width: 48,
+                      height: 48,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(16),
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: manageOnPressed,
+                      icon: const Icon(Icons.send),
+                    ),
             ],
           ),
         ),

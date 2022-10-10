@@ -37,7 +37,7 @@ void main() {
         cubit.shortenLink(newLinkString);
       },
       expect: () => <HomeState>[
-        const LoadingState(),
+        const LoadingState([]),
         const UpdateListState([newLink]),
       ],
     );
@@ -52,7 +52,7 @@ void main() {
         cubit.shortenLink(newLinkString);
       },
       expect: () => <HomeState>[
-        const LoadingState(),
+        const LoadingState([]),
         const UpdateListState([newLink]),
       ],
     );
@@ -67,8 +67,8 @@ void main() {
         cubit.shortenLink(newLinkString);
       },
       expect: () => <HomeState>[
-        const LoadingState(),
-        ErrorState(message: failure.message),
+        const LoadingState([]),
+        ErrorState([], message: failure.message),
       ],
     );
   });

@@ -9,19 +9,19 @@ import 'home_state.dart';
 
 @injectable
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this._shortenLinkUseCase) : super(InitState());
+  HomeCubit(this._shortenLinkUseCase) : super(const InitState([]));
 
-  final List<Link> _links = [];
+  List<Link> _links = List.unmodifiable([]);
   final ShortenLinkUseCase _shortenLinkUseCase;
 
   Future<void> shortenLink(String link) async {
-    emit(const LoadingState());
+    emit(LoadingState(_links));
     Either<Failure, Link> response = await _shortenLinkUseCase.invoke(link);
 
     response.fold(
-      (failure) => emit(ErrorState(message: failure.message)),
-      (link) {
-        _links.add(link);
+      (failure) => emit(ErrorState(_links, message: failure.message)),
+      (newLink) {
+        _links = List.unmodifiable([newLink, ..._links]);
         emit(UpdateListState(_links));
       },
     );
