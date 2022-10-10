@@ -8,7 +8,8 @@ import 'package:nubank_exercise/domain/models/failure.dart';
 class HttpClientWrapper {
   HttpClientWrapper(this._errorConverter);
 
-  final Dio _client = Dio();
+  final Dio _client =
+      Dio(BaseOptions(baseUrl: 'https://url-shortener-nu.herokuapp.com'));
   final HttpErrorConverter _errorConverter;
 
   Future<Either<Failure, T>> get<T>(
