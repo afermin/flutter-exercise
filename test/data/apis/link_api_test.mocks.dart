@@ -39,7 +39,7 @@ class MockHttpClientWrapper extends _i1.Mock implements _i3.HttpClientWrapper {
   @override
   _i4.Future<_i2.Either<_i5.Failure, T>> get<T>(
     String? path, {
-    Map<String, String>? queryParams,
+    Map<String, dynamic>? queryParams,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
