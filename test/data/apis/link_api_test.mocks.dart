@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:nubank_exercise/data/httpClient/http_client_wrapper.dart'
+import 'package:nubank_exercise/data/http_client/http_client_wrapper.dart'
     as _i3;
 import 'package:nubank_exercise/domain/models/failure.dart' as _i5;
 

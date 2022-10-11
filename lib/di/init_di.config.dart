@@ -11,9 +11,9 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../app/screens/home/state_management/home_cubit.dart' as _i10;
 import '../data/apis/link_api.dart' as _i6;
-import '../data/httpClient/http_client_wrapper.dart' as _i5;
-import '../data/httpClient/http_error_converter.dart' as _i3;
-import '../data/httpClient/register_http_client_module.dart' as _i11;
+import '../data/http_client/http_client_wrapper.dart' as _i5;
+import '../data/http_client/http_error_converter.dart' as _i3;
+import '../data/http_client/register_http_client_module.dart' as _i11;
 import '../data/repositories/link/link_repository.dart' as _i7;
 import '../data/repositories/link/link_repository_impl.dart' as _i8;
 import '../domain/usecases/shorten_link_use_case.dart'

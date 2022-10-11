@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nubank_exercise/data/httpClient/http_error_converter.dart';
+import 'package:nubank_exercise/data/http_client/http_error_converter.dart';
 import 'package:nubank_exercise/domain/models/failure.dart';
 
 @Injectable()

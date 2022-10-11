@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nubank_exercise/data/httpClient/http_client_wrapper.dart';
+import 'package:nubank_exercise/data/http_client/http_client_wrapper.dart';
 import 'package:nubank_exercise/data/models/shorten_link_response.dart';
 import 'package:nubank_exercise/domain/models/failure.dart';
 
