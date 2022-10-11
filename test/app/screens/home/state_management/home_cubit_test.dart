@@ -68,7 +68,7 @@ void main() {
       },
       expect: () => <HomeState>[
         const LoadingState([]),
-        ErrorState([], message: failure.message),
+        ErrorState(const [], message: failure.message),
       ],
     );
   });

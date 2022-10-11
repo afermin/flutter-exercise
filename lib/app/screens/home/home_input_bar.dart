@@ -30,6 +30,7 @@ class _LinkInputBarState extends State<LinkInputBar> {
             children: [
               Expanded(
                 child: TextFormField(
+                  key: const Key("linkTextField"),
                   controller: _textEditingController,
                   validator: InputValidatorError.getLinkValidator,
                 ),
@@ -41,10 +42,12 @@ class _LinkInputBarState extends State<LinkInputBar> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(16),
                       child: const CircularProgressIndicator(
+                        key: Key("submitProgressIndicator"),
                         strokeWidth: 2,
                       ),
                     )
                   : IconButton(
+                      key: const Key("submitLinkButton"),
                       onPressed: manageOnPressed,
                       icon: const Icon(Icons.send),
                     ),

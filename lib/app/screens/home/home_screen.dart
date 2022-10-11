@@ -26,7 +26,12 @@ class HomeScreen extends StatelessWidget {
             return Column(
               children: [
                 LinkInputBar(isLoading: state is LoadingState),
-                Expanded(child: LinkList(state.links)),
+                Expanded(
+                  child: LinkList(
+                    state.links,
+                    key: const Key('linkList'),
+                  ),
+                ),
               ],
             );
           },

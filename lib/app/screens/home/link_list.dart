@@ -12,6 +12,7 @@ class LinkList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      key: const Key('linkListView'),
       padding: const EdgeInsets.only(bottom: 16),
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
