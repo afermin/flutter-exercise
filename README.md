@@ -21,6 +21,5 @@ This is a Flutter project. To be able to setup the project properly will need to
 
 ## Missing points
 
-- UI Testing
-- Validate that the submitted URL already exist
-- Clean TextField after submitting
+- Validating that the submitted URL already exist
+- Cleaning TextField after submitting
