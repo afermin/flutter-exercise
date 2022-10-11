@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nubank_exercise/app/screens/home/home_input_bar.dart';
-import 'package:nubank_exercise/app/screens/home/link_list.dart';
+import 'package:nubank_exercise/app/screens/home/home_widgets_keys.dart';
 import 'package:nubank_exercise/app/screens/home/state_management/home_cubit.dart';
 import 'package:nubank_exercise/app/screens/home/state_management/home_state.dart';
+import 'package:nubank_exercise/app/screens/home/widgets/link_list.dart';
+import 'package:nubank_exercise/app/screens/home/widgets/links_input_bar.dart';
 import 'package:nubank_exercise/di/init_di.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -25,11 +26,14 @@ class HomeScreen extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
-                LinkInputBar(isLoading: state is LoadingState),
+                LinkInputBar(
+                  isLoading: state is LoadingState,
+                  onSubmit: context.read<HomeCubit>().shortenLink,
+                ),
                 Expanded(
                   child: LinkList(
                     state.links,
-                    key: const Key('linkList'),
+                    key: HomeWidgetsKeys.linkList,
                   ),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nubank_exercise/app/screens/home/home_widgets_keys.dart';
 import 'package:nubank_exercise/domain/entities/link.dart';
 
 class LinkListItem extends StatelessWidget {
@@ -18,10 +19,12 @@ class LinkListItem extends StatelessWidget {
         children: [
           Text(
             link.short,
+            key: HomeWidgetsKeys.textShortLink,
             style: Theme.of(context).textTheme.bodyText1,
           ),
           Text(
             link.self,
+            key: HomeWidgetsKeys.textSelfLink,
             style: Theme.of(context).textTheme.bodyText2,
           )
         ],

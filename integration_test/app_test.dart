@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:nubank_exercise/app/screens/home/link_list.dart';
+import 'package:nubank_exercise/app/screens/home/home_widgets_keys.dart';
 import 'package:nubank_exercise/app/screens/home/state_management/home_cubit.dart';
 import 'package:nubank_exercise/app/screens/home/state_management/home_state.dart';
+import 'package:nubank_exercise/app/screens/home/widgets/link_list.dart';
 import 'package:nubank_exercise/di/init_di.dart';
 import 'package:nubank_exercise/main.dart';
 
-import 'utils.dart';
+import '../test/app/utils.dart';
 
 class FakeHomeState extends Fake implements HomeState {}
 
@@ -29,7 +30,7 @@ void main() {
           await tester.pumpWidget(const MyApp());
           await tester.pumpAndSettle();
 
-          LinkList linkList = findWidgetByKey('linkList');
+          LinkList linkList = findWidgetByKey(HomeWidgetsKeys.linkList);
           expect(linkList.links.length, 0);
         },
       );
@@ -46,16 +47,20 @@ void main() {
           await tester.pumpAndSettle();
 
           await tester.enterText(
-              find.byKey(const Key('linkTextField')), urlInput);
+            find.byKey(HomeWidgetsKeys.linkTextField),
+            urlInput,
+          );
           await tester.tap(find.byType(IconButton));
           await addDelay(100);
           expect(
-              find.byKey(const Key('submitProgressIndicator')), findsOneWidget);
+            find.byKey(HomeWidgetsKeys.submitProgressIndicator),
+            findsOneWidget,
+          );
           await addDelay(3000);
 
-          LinkList linkList = findWidgetByKey('linkList');
+          LinkList linkList = findWidgetByKey(HomeWidgetsKeys.linkList);
 
-          expect(find.byKey(const Key('submitLinkButton')), findsOneWidget);
+          expect(find.byKey(HomeWidgetsKeys.submitLinkButton), findsOneWidget);
           expect(linkList.links.length, 1);
           expect(linkList.links[0].self, urlInput);
         },
@@ -72,10 +77,12 @@ void main() {
           await tester.pumpAndSettle();
 
           await tester.enterText(
-              find.byKey(const Key('linkTextField')), urlInput);
+            find.byKey(HomeWidgetsKeys.linkTextField),
+            urlInput,
+          );
           await tester.tap(find.byType(IconButton));
           await addDelay(100);
-          LinkList linkList = findWidgetByKey('linkList');
+          LinkList linkList = findWidgetByKey(HomeWidgetsKeys.linkList);
           Finder errorWidget = find.text('Enter a valid link');
 
           expect(linkList.links.length, 0);
