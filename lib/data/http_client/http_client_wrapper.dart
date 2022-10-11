@@ -13,7 +13,7 @@ class HttpClientWrapper {
 
   Future<Either<Failure, T>> get<T>(
     String path, {
-    Map<String, String>? queryParams,
+    Map<String, dynamic>? queryParams,
   }) async {
     try {
       final Response<T> response = await _client.get(
