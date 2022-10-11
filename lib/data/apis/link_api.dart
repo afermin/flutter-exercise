@@ -20,6 +20,10 @@ class LinkApiImpl implements LinkApi {
 
     final response = await _httpClientWrapper.post('/api/alias', body: params);
 
-    return response.map((dynamic) => ShortenLinkResponse.fromJson(dynamic));
+    try {
+      return response.map((dynamic) => ShortenLinkResponse.fromJson(dynamic));
+    } catch (e) {
+      return left(const Failure(message: 'An mapping error has occurred'));
+    }
   }
 }
