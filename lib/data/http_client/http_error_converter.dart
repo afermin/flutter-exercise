@@ -7,6 +7,7 @@ class HttpErrorConverter {
   /// Return a Failure from a DioError
   Failure mapError<T>(DioError error) {
     switch (error.type) {
+      // Ideally there should be different types of Failure's type classes
       case DioErrorType.cancel:
       case DioErrorType.sendTimeout:
       case DioErrorType.connectTimeout:
