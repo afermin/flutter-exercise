@@ -16,7 +16,7 @@ void main() {
   final ShortenLinkUseCase useCase = ShortenLinkUseCaseImpl(repository);
 
   const String newLinkString = "self";
-  const Failure failure = Failure(message: "message");
+  const Failure failure = UnknownFailure(message: "message");
   const Link newLink = Link(
     alias: "alias",
     self: newLinkString,

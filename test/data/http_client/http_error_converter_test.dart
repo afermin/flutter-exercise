@@ -7,12 +7,15 @@ void main() {
   final HttpErrorConverter httpErrorConverter = HttpErrorConverter();
 
   group("mapError method scenarios", () {
-    DioError getDioError(DioErrorType type) {
+    DioError getDioError(DioErrorType type, {int statusCode = 0}) {
+      final requestOptions = RequestOptions(path: "path");
       return DioError(
         type: type,
-        requestOptions: RequestOptions(
-          path: "path",
+        response: Response(
+          statusCode: statusCode,
+          requestOptions: requestOptions,
         ),
+        requestOptions: requestOptions,
       );
     }
 
@@ -20,55 +23,85 @@ void main() {
         "Given a $HttpErrorConverter"
         "When $HttpErrorConverter mapError method is called with a $DioError"
         "with a type ${DioErrorType.sendTimeout}"
-        "Then $HttpErrorConverter mapError method should return a Failure", () {
+        "Then $HttpErrorConverter mapError method should return a "
+        "$TimeOutFailure", () {
       final dioError = getDioError(DioErrorType.sendTimeout);
       final response = httpErrorConverter.mapError(dioError);
 
-      expect(response, isA<Failure>());
+      expect(response, isA<TimeOutFailure>());
     });
 
     test(
         "Given a $HttpErrorConverter"
         "When $HttpErrorConverter mapError method is called with a $DioError"
         "with a type ${DioErrorType.connectTimeout}"
-        "Then $HttpErrorConverter mapError method should return a Failure", () {
+        "Then $HttpErrorConverter mapError method should return a "
+        "$TimeOutFailure", () {
       final dioError = getDioError(DioErrorType.connectTimeout);
       final response = httpErrorConverter.mapError(dioError);
 
-      expect(response, isA<Failure>());
+      expect(response, isA<TimeOutFailure>());
     });
 
     test(
         "Given a $HttpErrorConverter"
         "When $HttpErrorConverter mapError method is called with a $DioError"
         "with a type ${DioErrorType.receiveTimeout}"
-        "Then $HttpErrorConverter mapError method should return a Failure", () {
+        "Then $HttpErrorConverter mapError method should return a "
+        "$TimeOutFailure", () {
       final dioError = getDioError(DioErrorType.receiveTimeout);
       final response = httpErrorConverter.mapError(dioError);
 
-      expect(response, isA<Failure>());
+      expect(response, isA<TimeOutFailure>());
     });
 
     test(
         "Given a $HttpErrorConverter"
         "When $HttpErrorConverter mapError method is called with a $DioError"
-        "with a type ${DioErrorType.response}"
-        "Then $HttpErrorConverter mapError method should return a Failure", () {
-      final dioError = getDioError(DioErrorType.response);
+        "with a type ${DioErrorType.response} with an statusCode 400"
+        "Then $HttpErrorConverter mapError method should return a "
+        "$BadRequestFailure", () {
+      final dioError = getDioError(DioErrorType.response, statusCode: 400);
       final response = httpErrorConverter.mapError(dioError);
 
-      expect(response, isA<Failure>());
+      expect(response, isA<BadRequestFailure>());
+    });
+
+    test(
+        "Given a $HttpErrorConverter"
+        "When $HttpErrorConverter mapError method is called with a $DioError"
+        "with a type ${DioErrorType.response} with an statusCode 404"
+        "Then $HttpErrorConverter mapError method should return a "
+        "$ResourceNotFoundFailure", () {
+      final dioError = getDioError(DioErrorType.response, statusCode: 404);
+      final response = httpErrorConverter.mapError(dioError);
+
+      expect(response, isA<ResourceNotFoundFailure>());
+    });
+
+    test(
+        "Given a $HttpErrorConverter"
+        "When $HttpErrorConverter mapError method is called with a $DioError"
+        "with a type ${DioErrorType.response} with an statusCode different "
+        "to 400 and 404"
+        "Then $HttpErrorConverter mapError method should return a "
+        "$UnknownFailure", () {
+      final dioError = getDioError(DioErrorType.response, statusCode: 300);
+      final response = httpErrorConverter.mapError(dioError);
+
+      expect(response, isA<UnknownFailure>());
     });
 
     test(
         "Given a $HttpErrorConverter"
         "When $HttpErrorConverter mapError method is called with a $DioError"
         "with a type ${DioErrorType.cancel}"
-        "Then $HttpErrorConverter mapError method should return a Failure", () {
+        "Then $HttpErrorConverter mapError method should return a "
+        "$UnknownFailure", () {
       final dioError = getDioError(DioErrorType.cancel);
       final response = httpErrorConverter.mapError(dioError);
 
-      expect(response, isA<Failure>());
+      expect(response, isA<UnknownFailure>());
     });
 
     test(

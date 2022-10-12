@@ -25,7 +25,7 @@ void main() {
       short: "short",
     );
 
-    const Failure failure = Failure(message: "message");
+    const Failure failure = UnknownFailure(message: "message");
 
     blocTest<HomeCubit, HomeState>(
       'when useCase returns a either.right value '

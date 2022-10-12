@@ -63,7 +63,7 @@ void main() {
       "_links": ""
     };
 
-    const expectedResponse = Failure(message: 'An mapping error has occurred');
+    const expectedResponse = MappingFailure();
 
     when(clientWrapper.post('/api/alias', body: params))
         .thenAnswer((_) => Future.value(right(clientResponse)));
@@ -82,7 +82,7 @@ void main() {
       "post method once and return a left(Failure)", () async {
     final Map<String, String> params = {'url': newSelfString};
 
-    const expectedResponse = Failure(message: 'Failure message');
+    const expectedResponse = UnknownFailure(message: 'Failure message');
 
     when(clientWrapper.post('/api/alias', body: params))
         .thenAnswer((_) => Future.value(left(expectedResponse)));

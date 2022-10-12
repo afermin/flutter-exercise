@@ -20,7 +20,7 @@ void main() {
   const String newSelfString = "self";
   const String newAliasString = "alias";
   const String newShortString = "short";
-  const Failure failure = Failure(message: "message");
+  const Failure failure = ResourceNotFoundFailure(message: "message");
   const Link newLink = Link(
     alias: "alias",
     self: newSelfString,

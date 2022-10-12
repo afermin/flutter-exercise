@@ -23,7 +23,7 @@ class LinkApiImpl implements LinkApi {
     try {
       return response.map((dynamic) => ShortenLinkResponse.fromJson(dynamic));
     } catch (e) {
-      return left(const Failure(message: 'An mapping error has occurred'));
+      return left(const MappingFailure());
     }
   }
 }

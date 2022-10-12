@@ -55,7 +55,7 @@ void main() {
         "get method once and return a left($Failure)", () async {
       const Map<String, dynamic> body = <String, dynamic>{};
       const String path = 'path';
-      const Failure failure = Failure(message: "Failure message");
+      const Failure failure = UnknownFailure(message: "Failure message");
       final dioError = DioError(
         type: DioErrorType.sendTimeout,
         requestOptions: RequestOptions(
@@ -110,7 +110,7 @@ void main() {
         "post method once and return a left($Failure)", () async {
       const Map<String, dynamic> body = <String, dynamic>{};
       const String path = 'path';
-      const Failure failure = Failure(message: "Failure message");
+      const Failure failure = BadRequestFailure(message: "Failure message");
       final dioError = DioError(
         type: DioErrorType.sendTimeout,
         requestOptions: RequestOptions(
