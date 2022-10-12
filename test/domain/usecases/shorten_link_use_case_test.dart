@@ -7,7 +7,7 @@ import 'package:nubank_exercise/domain/entities/link.dart';
 import 'package:nubank_exercise/domain/models/failure.dart';
 import 'package:nubank_exercise/domain/usecases/shorten_link_use_case.dart';
 
-import 'shorten_link_use_case.mocks.dart';
+import 'shorten_link_use_case_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<LinkRepository>()])
 void main() {
